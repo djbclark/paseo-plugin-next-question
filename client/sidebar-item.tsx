@@ -88,7 +88,7 @@ export function NextQuestionItem({ currentScreen, openScreen, theme }: PluginSid
       label="Questions please"
       trailing={
         <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
-          {shortcut ? (
+          {count !== null && count > 0 && shortcut ? (
             <Text style={{ fontSize: 12, color: theme.colors.foregroundMuted }}>{shortcut}</Text>
           ) : null}
           {count !== null && count > 0 ? (
