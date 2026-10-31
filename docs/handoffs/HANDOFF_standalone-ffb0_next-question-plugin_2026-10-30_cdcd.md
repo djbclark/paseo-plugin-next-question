@@ -26,7 +26,7 @@ left Orca (and herdr except `herdr4paseo` and `paseo4herdr`).
 1. The plugin is finished, public and tagged: https://github.com/djbclark/paseo-plugin-next-question, `v0.1.0`
    at `main` `8f35333`. It is installed on the local daemon as plugin id `next-question` (directory install).
 2. `paseo-screen` is installed and enabled (registry `kevguy/screen`, pin `1df9050d3721d927aa73655ad2cb4b4b53f42db9`,
-   plugin id `paseo-screen`). Live view and one forwarded Cmd+Shift+U were verified on the real desktop app.
+   plugin id `paseo-screen`). Live view was verified. CORRECTION (2026-10-30, later): a forwarded Cmd+Shift+U did NOT prove the shortcut works in the desktop app; see Evidence item 3.
 3. The lead has been briefed twice through `relay.py`: `pnq-orca-docs` (delivered, acked receipt) and
    `pnq-toolchain` (queued while the lead was busy). Both expectations were open at handoff time. The lead also
    sent a message to this agent (`ee4a895d-8f52-4e49-99a6-7d5a5d4b083f`) that was queued until this turn ended.
@@ -81,7 +81,7 @@ order 11).
 
 1. Repo: `main` `8f3533348d79122d9c4f8530c451a4d681176cd0`, tag `v0.1.0`, 21 unit tests pass (`npm test`), `npm run typecheck` clean, `npm pack --dry-run` lists 16 files.
 2. In the real app: the sidebar count read "(3)" with real agents waiting; five shortcut presses alternated across two waiting agents; answering one dropped the count and removed it from the cycle.
-3. Desktop app: one Cmd+Shift+U sent through paseo-screen moved the host window to the longest-waiting agent.
+3. Desktop app: CORRECTED. An earlier note here said a Cmd+Shift+U sent through paseo-screen moved the host window. That was a mistake (screenshots six minutes apart, djbclark had switched windows himself). A controlled retest at 22:57 found the shortcut does NOT jump in his desktop app, before or after a plugin reload, while Cmd+K forwarded through paseo-screen did open the Command Center. A "Check the shortcut" panel was added to diagnose it.
 4. paseo-screen: about 10 fps, no permission prompt (Screen Recording and Accessibility were already granted).
 5. Relay records: expectations `pnq-orca-docs` and `pnq-toolchain` for `1e61c979`; the brief is `/tmp/pnq-brief-lead.md` (temporary file).
 6. Test agents `pnq-test-1`, `-2`, `-3`, `pnq-shot`, `pnq-desktop` were started on the live daemon and archived.

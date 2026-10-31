@@ -88,6 +88,46 @@ export function recordCombo(): ComboRecording {
   return { result, cancel: () => finish(null) };
 }
 
+// What the settings screen's "Check the shortcut" panel shows. `listening` means this copy of
+// the plugin installed its listener; `blocked` means another listener already claimed the
+// window, which is the signature of a stale or duplicate copy.
+export type ShortcutStatus = "unsupported" | "off" | "listening" | "blocked";
+let status: ShortcutStatus = shortcutsSupported ? "off" : "unsupported";
+
+export function getShortcutStatus(): ShortcutStatus {
+  return status;
+}
+
+/** A key press the plugin's listener received while Cmd, Ctrl or Alt was held. */
+export interface KeySeen {
+  code: string;
+  meta: boolean;
+  ctrl: boolean;
+  alt: boolean;
+  shift: boolean;
+  matched: boolean;
+}
+let lastSeen: KeySeen | null = null;
+// While the settings screen is open the shortcut only reports there, so a working shortcut
+// does not navigate away from the panel that is showing the result.
+let testMode = false;
+const probes = new Set<() => void>();
+
+export function getLastKeySeen(): KeySeen | null {
+  return lastSeen;
+}
+
+export function setTestMode(on: boolean): void {
+  testMode = on;
+}
+
+export function subscribeProbe(callback: () => void): () => void {
+  probes.add(callback);
+  return () => {
+    probes.delete(callback);
+  };
+}
+
 // A plugin installed on several daemons runs its client entry once per connection, in one
 // window. Only the first listener to claim the window handles the key; the rest would open
 // the screen again.
@@ -95,20 +135,36 @@ const CLAIM = Symbol.for("paseo-plugin-next-question.shortcut");
 
 /** Returns a remover. A no-op off the web. */
 export function installShortcut(onTrigger: () => void): () => void {
-  if (!shortcutsSupported || window[CLAIM]) return () => {};
+  if (!shortcutsSupported) return () => {};
+  if (window[CLAIM]) {
+    status = "blocked";
+    return () => {};
+  }
   const listener: KeydownListener = (event) => {
-    // Every bindable combo holds mod or alt, so plain typing never reads storage.
+    // Every bindable combo holds mod or alt, so plain typing is never read or recorded.
     if (recording || !(event.metaKey || event.ctrlKey || event.altKey)) return;
-    if (!matchesCombo(event, readCombo(), isMac)) return;
+    const matched = matchesCombo(event, readCombo(), isMac);
+    lastSeen = {
+      code: event.code,
+      meta: event.metaKey,
+      ctrl: event.ctrlKey,
+      alt: event.altKey,
+      shift: event.shiftKey,
+      matched,
+    };
+    for (const probe of probes) probe();
+    if (!matched) return;
     event.preventDefault();
     event.stopPropagation();
-    onTrigger();
+    if (!testMode) onTrigger();
   };
   window[CLAIM] = listener;
+  status = "listening";
   // Capture phase, so focused inputs and the composer cannot swallow the key first.
   window.addEventListener("keydown", listener, true);
   return () => {
     window.removeEventListener("keydown", listener, true);
     if (window[CLAIM] === listener) window[CLAIM] = undefined;
+    status = "off";
   };
 }
