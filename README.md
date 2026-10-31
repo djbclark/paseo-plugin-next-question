@@ -6,7 +6,7 @@ See [OVERVIEW.md](OVERVIEW.md) for what it does and its limits.
 ## Installation
 
 ```sh
-paseo plugin install github:djbclark/paseo-plugin-questions-please
+paseo plugin add djbclark/questions-please
 ```
 
 Requires Paseo 0.14 or newer and plugins enabled on the daemon. The keyboard shortcut works in a
@@ -14,6 +14,15 @@ browser and in the macOS desktop app (confirmed by the author, 2026-10-30, with 
 default). The first default, Cmd+Shift+U, did not work in the desktop app; the Shortcut settings
 screen has a "Check the shortcut" panel for diagnosing a key that does nothing. The sidebar row and
 Command Center item work everywhere a host is selected.
+
+To update an existing installation after the registry approves a release:
+
+```sh
+paseo plugin update questions-please
+```
+
+The sidebar shows an amber waiting count and hollow circle, with your current shortcut to their
+left on desktop and web. These hide when no agents are waiting.
 
 ## Limitations
 
@@ -35,13 +44,13 @@ paseo plugin logs questions-please
 
 ## Layout
 
-| Path | Role |
-| --- | --- |
-| `shared/queue.ts` | Which agents are in the queue and the cycle order. Add a bucket here to cycle through more than `needs_input`. |
-| `shared/shortcut.ts` | The key combination: what can be bound, matching, parsing a stored value, display text. |
-| `client/jump.tsx` | The one screen every entry point opens. Navigation is only handed to screens. |
-| `client/web.ts` | The `keydown` listener, the combo recorder and the `localStorage` binding. Plugins have no keybinding API. |
-| `client/sidebar-item.tsx` | Sidebar row with a live waiting count. |
-| `client/settings.tsx` | Settings screen to record or reset the shortcut. |
+| Path                      | Role                                                                                                           |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `shared/queue.ts`         | Which agents are in the queue and the cycle order. Add a bucket here to cycle through more than `needs_input`. |
+| `shared/shortcut.ts`      | The key combination: what can be bound, matching, parsing a stored value, display text.                        |
+| `client/jump.tsx`         | The one screen every entry point opens. Navigation is only handed to screens.                                  |
+| `client/web.ts`           | The `keydown` listener, the combo recorder and the `localStorage` binding. Plugins have no keybinding API.     |
+| `client/sidebar-item.tsx` | Sidebar row with a live waiting count.                                                                         |
+| `client/settings.tsx`     | Settings screen to record or reset the shortcut.                                                               |
 
 MIT licensed.

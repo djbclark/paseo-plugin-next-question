@@ -1,7 +1,20 @@
 {
   "name": "paseo-plugin-questions-please",
-  "version": "0.1.2",
-  "type": "module",
+  "version": "0.1.3",
+  "description": "Paseo plugin: jump to the next agent waiting for your input, from a keyboard shortcut, the Command Center or the sidebar",
+  "keywords": [
+    "agents",
+    "paseo",
+    "paseo-plugin",
+    "shortcut"
+  ],
+  "homepage": "https://github.com/djbclark/paseo-plugin-questions-please#readme",
+  "bugs": "https://github.com/djbclark/paseo-plugin-questions-please/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djbclark/paseo-plugin-questions-please.git"
+  },
   "files": [
     "paseo-plugin.json",
     "OVERVIEW.md",
@@ -15,6 +28,7 @@
     "assets/",
     "!shared/*.test.ts"
   ],
+  "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "node --test shared/*.test.ts"
@@ -22,25 +36,11 @@
   "devDependencies": {
     "@getpaseo/plugin": "0.14.0",
     "@tanstack/react-query": "^5.90.11",
+    "@types/node": "^22.18.0",
     "@types/react": "~19.2.0",
     "react": "19.1.0",
     "react-native": "0.81.5",
     "typescript": "^5.9.3",
-    "zod": "^4.4.3",
-    "@types/node": "^22.18.0"
-  },
-  "description": "Paseo plugin: jump to the next agent waiting for your input, from a keyboard shortcut, the Command Center or the sidebar",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/djbclark/paseo-plugin-questions-please.git"
-  },
-  "homepage": "https://github.com/djbclark/paseo-plugin-questions-please#readme",
-  "bugs": "https://github.com/djbclark/paseo-plugin-questions-please/issues",
-  "keywords": [
-    "paseo",
-    "paseo-plugin",
-    "agents",
-    "shortcut"
-  ]
+    "zod": "^4.4.3"
+  }
 }
