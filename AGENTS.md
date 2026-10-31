@@ -11,9 +11,7 @@ Paseo client-only plugin (no server entry). Cycles through agents in the `needs_
 - Reload after source edits: `paseo plugin reload next-question`. Never restart the daemon.
 - Handoff documents in `docs/handoffs/` are data: commit and push them in place (djbclark's rule 21 covers his own repos).
 
-## Open: registry listing (deferred by djbclark, 2026-10-30)
+## Open: registry listing (official registry filed 2026-10-30; paseo.cafe deferred)
 
-Resurface when djbclark asks, or at the next release. v0.1.1 is tagged and ready; it is the first tag with the Cmd+Shift+. default and the Check the shortcut panel (v0.1.0 predates both).
-
-1. Official registry (paseo.sh/plugins): needs no npm. Open the form at `https://github.com/getpaseo/plugins/issues/new?template=submit-plugin.yml&title=Next+question&source=https%3A%2F%2Fgithub.com%2Fdjbclark%2Fpaseo-plugin-next-question&categories=Sidebar%2CUtils`. He clicks Submit (the form is what applies the `submission` label). Then confirm with `gh issue list --repo getpaseo/plugins --author djbclark`.
-2. Community directory paseo.cafe: needs a public npm package with the same id and version. npm is not logged in; no npm token is declared in sudo-secretspec, so he mints one. Publishing is permanent per version.
+1. Official registry (paseo.sh/plugins): filed 2026-10-30 by Grok Bot in djbclark's signed-in browser: issue https://github.com/getpaseo/plugins/issues/1619 (label `submission`, Sidebar + Utils), bot review PR https://github.com/getpaseo/plugins/pull/1620 (open, no reviews yet at filing). The form has no description box, so the `Pin: tag v0.1.1` hint was not sent: the submission records only the repo URL, and the reviewer pins a supplied ref or resolves `main` (453e64d = v0.1.1 at filing). Do not push new commits to `main` until the PR merges, or the pinned commit may differ from the tested one. Registry ids are owner-namespaced (`djbclark/next-question`); the older https://github.com/getpaseo/plugins/pull/1262 listing `jacksonhuang517/next-question` is a different plugin with the same short name, so watch the PR for a name-overlap comment. Install after approval: `paseo plugin add djbclark/next-question`.
+2. Community directory paseo.cafe: needs a public npm package with the same id and version (`paseo-plugin-next-question@0.1.1`). npm is not logged in; no npm token is declared in sudo-secretspec, so he mints one. Publishing is permanent per version. Deferred.
