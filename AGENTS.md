@@ -9,3 +9,10 @@ Paseo client-only plugin (no server entry). Cycles through agents in the `needs_
 - Adding a bucket: extend `WaitingBucket` in `shared/queue.ts`, add its matcher, list it in `ENABLED_BUCKETS`.
 - `MATCHERS.needs_input` restates `deriveAgentStateBucket` from `@getpaseo/protocol`, which plugins cannot import. Re-check it when Paseo changes that rule.
 - Reload after source edits: `paseo plugin reload next-question`. Never restart the daemon.
+
+## Open: registry listing (deferred by djbclark, 2026-10-30)
+
+Resurface when djbclark asks, or at the next release. v0.1.0 is tagged and ready.
+
+1. Official registry (paseo.sh/plugins): needs no npm. Open the form at `https://github.com/getpaseo/plugins/issues/new?template=submit-plugin.yml&title=Next+question&source=https%3A%2F%2Fgithub.com%2Fdjbclark%2Fpaseo-plugin-next-question&categories=Sidebar%2CUtils`. He clicks Submit (the form is what applies the `submission` label). Then confirm with `gh issue list --repo getpaseo/plugins --author djbclark`.
+2. Community directory paseo.cafe: needs a public npm package with the same id and version. npm is not logged in; no npm token is declared in sudo-secretspec, so he mints one. Publishing is permanent per version.
