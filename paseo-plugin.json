@@ -1,0 +1,8 @@
+{
+  "id": "next-question",
+  "name": "Next question",
+  "media": [],
+  "requirements": {
+    "paseo": ">=0.14.0"
+  }
+}
