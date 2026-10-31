@@ -21,8 +21,8 @@ export const ComboSchema = z
   .refine((combo) => combo.mod || combo.alt);
 export type Combo = z.infer<typeof ComboSchema>;
 
-/** Cmd+Shift+U on macOS, Ctrl+Shift+U elsewhere. */
-export const DEFAULT_COMBO: Combo = { code: "KeyU", mod: true, shift: true, alt: false };
+/** Cmd+Shift+. (period) on macOS, Ctrl+Shift+. elsewhere. Core Paseo binds Cmd+. without Shift. */
+export const DEFAULT_COMBO: Combo = { code: "Period", mod: true, shift: true, alt: false };
 
 const MODIFIER_KEY = /^(Shift|Control|Alt|Meta|OS)(Left|Right)?$/;
 

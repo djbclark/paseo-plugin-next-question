@@ -11,7 +11,7 @@ import {
 
 function press(over: Partial<ShortcutKeyEvent>): ShortcutKeyEvent {
   return {
-    code: "KeyU",
+    code: "Period",
     metaKey: false,
     ctrlKey: false,
     altKey: false,
@@ -23,7 +23,7 @@ function press(over: Partial<ShortcutKeyEvent>): ShortcutKeyEvent {
 }
 
 describe("matchesCombo with the default binding", () => {
-  it("is Cmd+Shift+U on a Mac and Ctrl+Shift+U elsewhere", () => {
+  it("is Cmd+Shift+. on a Mac and Ctrl+Shift+. elsewhere", () => {
     assert.equal(matchesCombo(press({ metaKey: true, shiftKey: true }), DEFAULT_COMBO, true), true);
     assert.equal(matchesCombo(press({ ctrlKey: true, shiftKey: true }), DEFAULT_COMBO, false), true);
   });
@@ -108,7 +108,7 @@ describe("formatCombo", () => {
     const combo = { code: "BracketRight", mod: true, shift: true, alt: true };
     assert.equal(formatCombo(combo, true), "⌥⇧⌘]");
     assert.equal(formatCombo(combo, false), "Ctrl+Alt+Shift+]");
-    assert.equal(formatCombo(DEFAULT_COMBO, true), "⇧⌘U");
-    assert.equal(formatCombo(DEFAULT_COMBO, false), "Ctrl+Shift+U");
+    assert.equal(formatCombo(DEFAULT_COMBO, true), "⇧⌘.");
+    assert.equal(formatCombo(DEFAULT_COMBO, false), "Ctrl+Shift+.");
   });
 });
