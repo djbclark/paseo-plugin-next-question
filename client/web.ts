@@ -28,7 +28,7 @@ declare const localStorage: {
   removeItem(key: string): void;
 };
 
-const STORAGE_KEY = "paseo-plugin-next-question.combo";
+const STORAGE_KEY = "paseo-plugin-questions-please.combo";
 
 /** False on iOS and Android: there is no hardware keyboard to listen to. */
 export const shortcutsSupported = Platform.OS === "web";
@@ -131,7 +131,7 @@ export function subscribeProbe(callback: () => void): () => void {
 // A plugin installed on several daemons runs its client entry once per connection, in one
 // window. Only the first listener to claim the window handles the key; the rest would open
 // the screen again.
-const CLAIM = Symbol.for("paseo-plugin-next-question.shortcut");
+const CLAIM = Symbol.for("paseo-plugin-questions-please.shortcut");
 
 /** Returns a remover. A no-op off the web. */
 export function installShortcut(onTrigger: () => void): () => void {

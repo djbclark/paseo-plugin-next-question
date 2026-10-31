@@ -1,5 +1,5 @@
 {
-  "name": "paseo-plugin-next-question",
+  "name": "paseo-plugin-questions-please",
   "version": "0.1.1",
   "type": "module",
   "files": [
@@ -33,10 +33,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/djbclark/paseo-plugin-next-question.git"
+    "url": "git+https://github.com/djbclark/paseo-plugin-questions-please.git"
   },
-  "homepage": "https://github.com/djbclark/paseo-plugin-next-question#readme",
-  "bugs": "https://github.com/djbclark/paseo-plugin-next-question/issues",
+  "homepage": "https://github.com/djbclark/paseo-plugin-questions-please#readme",
+  "bugs": "https://github.com/djbclark/paseo-plugin-questions-please/issues",
   "keywords": [
     "paseo",
     "paseo-plugin",

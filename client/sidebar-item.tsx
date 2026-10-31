@@ -6,7 +6,7 @@ import { waitingQueue } from "../shared/queue";
 import { readAllAgents } from "./directory";
 import { JUMP_SCREEN_ID } from "./jump";
 
-const COUNT_KEY = ["next-question", "count"] as const;
+const COUNT_KEY = ["questions-please", "count"] as const;
 const REFRESH_DEBOUNCE_MS = 400;
 const BACKSTOP_MS = 30_000;
 
@@ -48,7 +48,7 @@ function useWaitingCount(): number | null {
         });
       })
       .catch((error: unknown) => {
-        if (!lifetime.signal.aborted) console.error("next-question: agent observation failed", error);
+        if (!lifetime.signal.aborted) console.error("questions-please: agent observation failed", error);
       });
     return () => {
       lifetime.abort();
@@ -65,7 +65,7 @@ export function NextQuestionItem({ currentScreen, openScreen }: PluginSidebarIte
   return (
     <SidebarRow
       icon="CircleAlert"
-      label={count ? `Next question (${count})` : "Next question"}
+      label={count ? `Questions please (${count})` : "Questions please"}
       active={currentScreen?.screenId === JUMP_SCREEN_ID}
       onPress={() => openScreen({ screenId: JUMP_SCREEN_ID, params: { n: String(Date.now()) } })}
     />

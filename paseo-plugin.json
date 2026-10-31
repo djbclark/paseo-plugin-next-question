@@ -1,6 +1,6 @@
 {
-  "id": "next-question",
-  "name": "Next question",
+  "id": "questions-please",
+  "name": "Questions please",
   "description": "Jump to the next agent waiting for your input, from a keyboard shortcut, the Command Center or the sidebar.",
   "media": ["assets/settings.png", "assets/sidebar-row.png"],
   "requirements": {

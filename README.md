@@ -1,4 +1,4 @@
-# paseo-plugin-next-question
+# paseo-plugin-questions-please
 
 A [Paseo](https://paseo.sh) plugin that jumps to the next agent waiting for your input.
 See [OVERVIEW.md](OVERVIEW.md) for what it does and its limits.
@@ -6,7 +6,7 @@ See [OVERVIEW.md](OVERVIEW.md) for what it does and its limits.
 ## Installation
 
 ```sh
-paseo plugin install github:djbclark/paseo-plugin-next-question
+paseo plugin install github:djbclark/paseo-plugin-questions-please
 ```
 
 Requires Paseo 0.14 or newer and plugins enabled on the daemon. The keyboard shortcut works in a
@@ -29,8 +29,8 @@ Command Center item work everywhere a host is selected.
 npm install
 npm run typecheck
 npm test
-paseo plugin install "$PWD"        # then: paseo plugin reload next-question
-paseo plugin logs next-question
+paseo plugin install "$PWD"        # then: paseo plugin reload questions-please
+paseo plugin logs questions-please
 ```
 
 ## Layout

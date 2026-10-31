@@ -6,7 +6,7 @@ import { installShortcut } from "./client/web";
 
 export default function contribute(client: PluginClientContext) {
   const removers = [
-    client.addScreen({ id: JUMP_SCREEN_ID, title: "Next question", Component: JumpScreen }),
+    client.addScreen({ id: JUMP_SCREEN_ID, title: "Questions please", Component: JumpScreen }),
     client.addSettingsScreen({
       id: "shortcut",
       title: "Shortcut",
@@ -14,12 +14,12 @@ export default function contribute(client: PluginClientContext) {
       Component: ShortcutSettings,
     }),
     client.addSidebarHeaderItem({
-      id: "next-question",
-      title: "Next question",
+      id: "questions-please",
+      title: "Questions please",
       Component: NextQuestionItem,
     }),
     client.addCommandCenterItem({
-      id: "next-question",
+      id: "questions-please",
       title: "Next waiting question",
       icon: "CircleAlert",
       keywords: ["waiting", "question", "input", "permission", "picklist", "approve", "next"],

@@ -17,7 +17,7 @@ export const JUMP_SCREEN_ID = "jump";
 export function JumpScreen({ params, navigation, host, theme, layout }: PluginScreenProps) {
   const paseo = usePaseo();
   const queue = useQuery({
-    queryKey: ["next-question", host.id, params.n ?? ""],
+    queryKey: ["questions-please", host.id, params.n ?? ""],
     queryFn: async ({ signal }) => waitingQueue(await readAllAgents(paseo, signal)),
     enabled: Boolean(navigation),
     retry: false,
