@@ -9,6 +9,7 @@ Paseo client-only plugin (no server entry). Cycles through agents in the `needs_
 - Adding a bucket: extend `WaitingBucket` in `shared/queue.ts`, add its matcher, list it in `ENABLED_BUCKETS`.
 - `MATCHERS.needs_input` restates `deriveAgentStateBucket` from `@getpaseo/protocol`, which plugins cannot import. Re-check it when Paseo changes that rule.
 - Reload after source edits: `paseo plugin reload next-question`. Never restart the daemon.
+- Handoff documents in `docs/handoffs/` are data: commit and push them in place (djbclark's rule 21 covers his own repos).
 
 ## Open: registry listing (deferred by djbclark, 2026-10-30)
 
