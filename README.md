@@ -9,8 +9,9 @@ See [OVERVIEW.md](OVERVIEW.md) for what it does and its limits.
 paseo plugin install github:djbclark/paseo-plugin-next-question
 ```
 
-Requires Paseo 0.14 or newer and plugins enabled on the daemon. The keyboard shortcut works in the
-desktop app and in browsers; the sidebar row and Command Center item work everywhere.
+Requires Paseo 0.14 or newer and plugins enabled on the daemon. The keyboard shortcut is tested in a
+browser; the desktop app runs the same web client but has not been tested. The sidebar row and
+Command Center item work everywhere a host is selected.
 
 ## Limitations
 
@@ -18,6 +19,7 @@ desktop app and in browsers; the sidebar row and Command Center item work everyw
 - Agent tabs only. Terminals, finished agents and failed agents are not included.
 - The shortcut binding is saved per browser or app, not per daemon. Escape while recording also leaves the settings page, because Paseo handles Escape first.
 - Installed on several daemons, only one handles the shortcut in a given window.
+- Plugin Command Center items need a selected host, so the item is missing on the Open Project screen.
 
 ## Develop
 
