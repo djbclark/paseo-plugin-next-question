@@ -9,10 +9,11 @@ See [OVERVIEW.md](OVERVIEW.md) for what it does and its limits.
 paseo plugin install github:djbclark/paseo-plugin-next-question
 ```
 
-Requires Paseo 0.14 or newer and plugins enabled on the daemon. The keyboard shortcut is tested in a
-browser only. In the macOS desktop app it was reported not to work (2026-10-30); the Shortcut
-settings screen has a "Check the shortcut" panel for diagnosing it. The sidebar row and Command
-Center item work everywhere a host is selected.
+Requires Paseo 0.14 or newer and plugins enabled on the daemon. The keyboard shortcut works in a
+browser and in the macOS desktop app (confirmed by the author, 2026-10-30, with the current
+default). The first default, Cmd+Shift+U, did not work in the desktop app; the Shortcut settings
+screen has a "Check the shortcut" panel for diagnosing a key that does nothing. The sidebar row and
+Command Center item work everywhere a host is selected.
 
 ## Limitations
 
