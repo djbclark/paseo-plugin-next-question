@@ -1,7 +1,8 @@
 {
   "id": "next-question",
   "name": "Next question",
-  "media": [],
+  "description": "Jump to the next agent waiting for your input, from a keyboard shortcut, the Command Center or the sidebar.",
+  "media": ["assets/settings.png", "assets/sidebar-row.png"],
   "requirements": {
     "paseo": ">=0.14.0"
   }

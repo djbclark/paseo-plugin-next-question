@@ -1,7 +1,6 @@
 {
   "name": "paseo-plugin-next-question",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "files": [
     "paseo-plugin.json",
@@ -12,8 +11,9 @@
     "index.server.ts",
     "index.server.tsx",
     "client/",
-    "server/",
-    "shared/"
+    "shared/",
+    "assets/",
+    "!shared/*.test.ts"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
@@ -30,5 +30,12 @@
     "@types/node": "^22.18.0"
   },
   "description": "Paseo plugin: jump to the next agent waiting for your input, from a keyboard shortcut, the Command Center or the sidebar",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djbclark/paseo-plugin-next-question.git"
+  },
+  "homepage": "https://github.com/djbclark/paseo-plugin-next-question#readme",
+  "bugs": "https://github.com/djbclark/paseo-plugin-next-question/issues",
+  "keywords": ["paseo", "paseo-plugin", "agents", "shortcut"]
 }
