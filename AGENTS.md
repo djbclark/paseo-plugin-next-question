@@ -13,7 +13,7 @@ Paseo client-only plugin (no server entry). Cycles through agents in the `needs_
 
 ## Open: registry listing (deferred by djbclark, 2026-10-30)
 
-Resurface when djbclark asks, or at the next release. v0.1.0 is tagged and ready.
+Resurface when djbclark asks, or at the next release. v0.1.1 is tagged and ready; it is the first tag with the Cmd+Shift+. default and the Check the shortcut panel (v0.1.0 predates both).
 
 1. Official registry (paseo.sh/plugins): needs no npm. Open the form at `https://github.com/getpaseo/plugins/issues/new?template=submit-plugin.yml&title=Next+question&source=https%3A%2F%2Fgithub.com%2Fdjbclark%2Fpaseo-plugin-next-question&categories=Sidebar%2CUtils`. He clicks Submit (the form is what applies the `submission` label). Then confirm with `gh issue list --repo getpaseo/plugins --author djbclark`.
 2. Community directory paseo.cafe: needs a public npm package with the same id and version. npm is not logged in; no npm token is declared in sudo-secretspec, so he mints one. Publishing is permanent per version.

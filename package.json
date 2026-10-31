@@ -1,6 +1,6 @@
 {
   "name": "paseo-plugin-next-question",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "files": [
     "paseo-plugin.json",
@@ -37,5 +37,10 @@
   },
   "homepage": "https://github.com/djbclark/paseo-plugin-next-question#readme",
   "bugs": "https://github.com/djbclark/paseo-plugin-next-question/issues",
-  "keywords": ["paseo", "paseo-plugin", "agents", "shortcut"]
+  "keywords": [
+    "paseo",
+    "paseo-plugin",
+    "agents",
+    "shortcut"
+  ]
 }
