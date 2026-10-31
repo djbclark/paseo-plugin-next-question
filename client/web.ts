@@ -16,7 +16,13 @@ interface ShortcutDomEvent extends ShortcutKeyEvent {
   stopPropagation(): void;
 }
 type KeydownListener = (event: ShortcutDomEvent) => void;
+interface StorageEvent {
+  key: string | null;
+}
+type StorageListener = (event: StorageEvent) => void;
 declare const window: {
+  addEventListener(type: "storage", listener: StorageListener): void;
+  removeEventListener(type: "storage", listener: StorageListener): void;
   addEventListener(type: "keydown", listener: KeydownListener, capture: boolean): void;
   removeEventListener(type: "keydown", listener: KeydownListener, capture: boolean): void;
   [claim: symbol]: unknown;
@@ -27,6 +33,22 @@ declare const localStorage: {
   setItem(key: string, value: string): void;
   removeItem(key: string): void;
 };
+
+const comboListeners = new Set<() => void>();
+
+/** Observe successful local saves and changes from other windows. */
+export function subscribeCombo(callback: () => void): () => void {
+  if (!shortcutsSupported) return () => {};
+  comboListeners.add(callback);
+  const onStorage: StorageListener = (event) => {
+    if (event.key === STORAGE_KEY || event.key === null) callback();
+  };
+  window.addEventListener("storage", onStorage);
+  return () => {
+    comboListeners.delete(callback);
+    window.removeEventListener("storage", onStorage);
+  };
+}
 
 const STORAGE_KEY = "paseo-plugin-questions-please.combo";
 
@@ -49,6 +71,7 @@ export function readCombo(): Combo {
 export function writeCombo(combo: Combo | null): void {
   if (combo === null) localStorage.removeItem(STORAGE_KEY);
   else localStorage.setItem(STORAGE_KEY, JSON.stringify(combo));
+  for (const callback of comboListeners) callback();
 }
 
 // While a combo is being recorded the shortcut must not fire, or pressing the current binding

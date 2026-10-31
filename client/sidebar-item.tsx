@@ -1,7 +1,10 @@
 import { usePaseo, type PluginSidebarItemProps } from "@getpaseo/plugin/client";
 import { SidebarRow } from "@getpaseo/plugin/client/ui";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
+import { Text, View } from "react-native";
+import { formatCombo } from "../shared/shortcut";
+import { isMac, readCombo, shortcutsSupported, subscribeCombo } from "./web";
 import { waitingQueue } from "../shared/queue";
 import { readAllAgents } from "./directory";
 import { JUMP_SCREEN_ID } from "./jump";
@@ -48,7 +51,8 @@ function useWaitingCount(): number | null {
         });
       })
       .catch((error: unknown) => {
-        if (!lifetime.signal.aborted) console.error("questions-please: agent observation failed", error);
+        if (!lifetime.signal.aborted)
+          console.error("questions-please: agent observation failed", error);
       });
     return () => {
       lifetime.abort();
@@ -60,12 +64,66 @@ function useWaitingCount(): number | null {
   return count.data ?? null;
 }
 
-export function NextQuestionItem({ currentScreen, openScreen }: PluginSidebarItemProps) {
+function shortcutLabel(): string {
+  return shortcutsSupported ? formatCombo(readCombo(), isMac) : "";
+}
+
+export function NextQuestionItem({ currentScreen, openScreen, theme }: PluginSidebarItemProps) {
   const count = useWaitingCount();
+  const shortcut = useSyncExternalStore(subscribeCombo, shortcutLabel, () => "");
+  // Match Better Paseo Tasks' status palette, which is brighter than statusWarning.
+  const rgb = theme.colors.surface0.match(/^#([0-9a-f]{6})/i)?.[1];
+  const channels = rgb
+    ? [0, 2, 4].map((offset) => Number.parseInt(rgb.slice(offset, offset + 2), 16))
+    : theme.colors.surface0
+        .match(/^rgba?\(\s*(\d+)[\s,]+(\d+)[\s,]+(\d+)/i)
+        ?.slice(1, 4)
+        .map(Number);
+  const dark =
+    !channels || (0.299 * channels[0]! + 0.587 * channels[1]! + 0.114 * channels[2]!) / 255 < 0.5;
+  const warning = dark ? "#db932e" : "#b37824";
   return (
     <SidebarRow
       icon="CircleAlert"
-      label={count ? `Questions please (${count})` : "Questions please"}
+      label="Questions please"
+      trailing={
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+          {shortcut ? (
+            <Text style={{ fontSize: 12, color: theme.colors.foregroundMuted }}>{shortcut}</Text>
+          ) : null}
+          {count !== null && count > 0 ? (
+            <View
+              accessible
+              accessibilityLabel={`${count} waiting for input`}
+              style={{ flexDirection: "row", alignItems: "center", gap: 3 }}
+            >
+              <View
+                style={{ width: 14, height: 14, alignItems: "center", justifyContent: "center" }}
+              >
+                <View
+                  style={{
+                    width: 10.5,
+                    height: 10.5,
+                    borderRadius: 5.25,
+                    borderWidth: 1.3125,
+                    borderColor: warning,
+                  }}
+                />
+              </View>
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontWeight: "600",
+                  color: warning,
+                  fontVariant: ["tabular-nums"],
+                }}
+              >
+                {count}
+              </Text>
+            </View>
+          ) : null}
+        </View>
+      }
       active={currentScreen?.screenId === JUMP_SCREEN_ID}
       onPress={() => openScreen({ screenId: JUMP_SCREEN_ID, params: { n: String(Date.now()) } })}
     />
