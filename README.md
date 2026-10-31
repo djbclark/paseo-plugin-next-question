@@ -24,9 +24,10 @@ paseo plugin logs next-question
 | Path | Role |
 | --- | --- |
 | `shared/queue.ts` | Which agents are in the queue and the cycle order. Add a bucket here to cycle through more than `needs_input`. |
-| `shared/shortcut.ts` | The key combination matcher. |
+| `shared/shortcut.ts` | The key combination: what can be bound, matching, parsing a stored value, display text. |
 | `client/jump.tsx` | The one screen every entry point opens. Navigation is only handed to screens. |
-| `client/web.ts` | The `keydown` listener. Plugins have no keybinding API. |
+| `client/web.ts` | The `keydown` listener, the combo recorder and the `localStorage` binding. Plugins have no keybinding API. |
 | `client/sidebar-item.tsx` | Sidebar row with a live waiting count. |
+| `client/settings.tsx` | Settings screen to record or reset the shortcut. |
 
 MIT licensed.

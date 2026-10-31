@@ -1,11 +1,18 @@
 import type { PluginClientContext } from "@getpaseo/plugin/client";
 import { JUMP_SCREEN_ID, JumpScreen } from "./client/jump";
 import { NextQuestionItem } from "./client/sidebar-item";
+import { ShortcutSettings } from "./client/settings";
 import { installShortcut } from "./client/web";
 
 export default function contribute(client: PluginClientContext) {
   const removers = [
     client.addScreen({ id: JUMP_SCREEN_ID, title: "Next question", Component: JumpScreen }),
+    client.addSettingsScreen({
+      id: "shortcut",
+      title: "Shortcut",
+      icon: "Keyboard",
+      Component: ShortcutSettings,
+    }),
     client.addSidebarHeaderItem({
       id: "next-question",
       title: "Next question",
