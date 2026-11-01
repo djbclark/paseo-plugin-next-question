@@ -2,7 +2,7 @@
 
 Paseo client-only plugin (no server entry). Cycles through agents in the `needs_input` bucket.
 
-- `npm run typecheck` and `npm test` before every commit. Tests cover `shared/` only; it has no DOM, React or Node imports besides test files.
+- `npm run typecheck` and `npm test` before every commit. Tests run from `shared/*.test.ts`. `client-presentation.test.ts` evaluates the real client modules with explicit host adapters to check presentation and storage subscriptions; it does not run a browser, React renderer, or queue subscription. Runtime `shared/` code has no DOM, React or Node imports.
 - DOM globals live only in `client/web.ts`, declared locally. The tsconfig has no DOM lib.
 - The shortcut binding is per device in `localStorage` (key `paseo-plugin-questions-please.combo`), read on every keydown that holds Cmd, Ctrl or Alt. It is not a Paseo host setting: those need a server entry and are shared by every client of the daemon.
 - Paseo's own capture-phase `keydown` handlers on `window` run before the plugin's. The plugin cannot stop them, so Escape while recording also leaves the settings page.
